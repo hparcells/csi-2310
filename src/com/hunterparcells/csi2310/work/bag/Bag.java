@@ -1,10 +1,10 @@
 package com.hunterparcells.csi2310.work.bag;
 
-import com.hunterparcells.csi2310.exception.BagOverflowException;
+import com.hunterparcells.csi2310.work.bag.exception.BagOverflowException;
 
 import java.util.ArrayList;
 
-public class Bag implements IBag {
+class Bag implements IBag {
     private final int size;
     private ArrayList<Object> bag;
 
@@ -16,7 +16,7 @@ public class Bag implements IBag {
     public void add(Object item) {
         try {
             if(this.length() == this.size) {
-                throw new BagOverflowException();
+                throw new BagOverflowException(item, this.size);
             }
             bag.add(item);
         }catch(Exception e) {
@@ -44,6 +44,11 @@ public class Bag implements IBag {
         this.bag = new ArrayList<>();
     }
 
+    /**
+     * Returns the contents of the bag in an ArrayList.
+     *
+     * @return The contents of the bag.
+     */
     public ArrayList<Object> getBag() {
         return this.bag;
     }

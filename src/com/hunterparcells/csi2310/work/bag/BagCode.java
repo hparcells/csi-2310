@@ -19,14 +19,16 @@ public class BagCode extends Runnable {
         bag.add("Item 1");
         bag.add("Item 2");
         bag.add("Item 3");
-        bag.add("Item 3");
-        bag.add("Item 3");
-        bag.add("Item 3");
-        bag.add("Item 3");
-        bag.add("Item 3");
-        bag.add("Item 3");
-        bag.add("Item 3");
-        bag.add("Item 3");
+        bag.add("Item 4");
+        bag.add("Item 5");
+        bag.add("Item 6");
+        bag.add("Item 7");
+        bag.add("Item 8");
+        bag.add("Item 9");
+        bag.add("Item 10");
+
+        // This should error.
+        bag.add("Item 11");
 
         // Print the items in the bag.
         for(Object item : bag.getBag()) {

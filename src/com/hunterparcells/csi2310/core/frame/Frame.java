@@ -9,7 +9,6 @@ public class Frame extends JFrame {
     private final Runnable[] labs;
 
     private FrameOutput output;
-    private LabSelector labSelector;
 
     public Frame(Runnable[] labs) {
         super("CSI 2310");
@@ -17,6 +16,7 @@ public class Frame extends JFrame {
         this.labs = labs;
     }
 
+    // TODO: Make the frame better.
     public void initFrame() {
         // Init frame.
         JPanel panel = new JPanel();
@@ -30,8 +30,8 @@ public class Frame extends JFrame {
         this.setResizable(false);
 
         // Add lab selector.
-        this.labSelector = new LabSelector(this.labs);
-        this.add(this.labSelector, BorderLayout.NORTH);
+        LabSelector labSelector = new LabSelector(this.labs);
+        this.add(labSelector, BorderLayout.NORTH);
 
         // Add output.
         this.output = new FrameOutput();
