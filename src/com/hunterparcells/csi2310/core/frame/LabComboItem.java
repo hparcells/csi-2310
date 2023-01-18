@@ -1,12 +1,12 @@
 package com.hunterparcells.csi2310.core.frame;
 
-import com.hunterparcells.csi2310.core.Lab;
+import com.hunterparcells.csi2310.core.Runnable;
 
 public class LabComboItem {
     private String display;
-    private Lab value;
+    private Runnable value;
 
-    public LabComboItem(String display, Lab value) {
+    public LabComboItem(String display, Runnable value) {
         this.display = display;
         this.value = value;
     }
@@ -26,11 +26,11 @@ public class LabComboItem {
         this.display = display;
     }
 
-    public Lab getValue() {
+    public Runnable getValue() {
         return value;
     }
 
-    public void setValue(Lab value) {
+    public void setValue(Runnable value) {
         this.value = value;
     }
 }

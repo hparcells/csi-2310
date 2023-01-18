@@ -3,7 +3,7 @@ package com.hunterparcells.csi2310.core;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public abstract class Lab implements Runnable, ILab {
+public abstract class Runnable implements java.lang.Runnable, IRunnable {
     private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private String name;

@@ -1,17 +1,17 @@
 package com.hunterparcells.csi2310.core.frame;
 
-import com.hunterparcells.csi2310.core.Lab;
+import com.hunterparcells.csi2310.core.Runnable;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Frame extends JFrame {
-    private final Lab[] labs;
+    private final Runnable[] labs;
 
     private FrameOutput output;
     private LabSelector labSelector;
 
-    public Frame(Lab[] labs) {
+    public Frame(Runnable[] labs) {
         super("CSI 2310");
 
         this.labs = labs;

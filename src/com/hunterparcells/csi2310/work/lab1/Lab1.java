@@ -1,11 +1,11 @@
-package com.hunterparcells.csi2310.lab1;
+package com.hunterparcells.csi2310.work.lab1;
 
-import com.hunterparcells.csi2310.core.Lab;
+import com.hunterparcells.csi2310.core.Runnable;
 import com.hunterparcells.csi2310.util.Logger;
 
 import java.time.LocalDate;
 
-public class Lab1 extends Lab {
+public class Lab1 extends Runnable {
     public Lab1() {
         this.setName("Lab 1");
         this.setDate(LocalDate.of(2023, 1, 18));

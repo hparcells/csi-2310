@@ -1,17 +1,18 @@
 package com.hunterparcells.csi2310.core.frame;
 
-import com.hunterparcells.csi2310.core.Lab;
+import com.hunterparcells.csi2310.core.Runnable;
+import com.hunterparcells.csi2310.util.Logger;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LabSelector extends JComboBox<LabComboItem> implements ActionListener {
-    public LabSelector(Lab[] labs) {
+    public LabSelector(Runnable[] labs) {
         super();
 
         this.addItem(new LabComboItem("Select a lab...", null));
-        for(Lab lab : labs) {
+        for(Runnable lab : labs) {
             this.addItem(new LabComboItem(lab.getFormattedName(), lab));
         }
 
@@ -22,8 +23,11 @@ public class LabSelector extends JComboBox<LabComboItem> implements ActionListen
         LabComboItem labItem = (LabComboItem) this.getSelectedItem();
 
         if(labItem != null) {
-            Lab lab = labItem.getValue();
-            lab.run();
+            Logger.clear();
+            Runnable lab = labItem.getValue();
+
+            Thread thread = new Thread(lab);
+            thread.start();
         }
     }
 }

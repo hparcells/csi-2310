@@ -1,4 +1,4 @@
-package com.hunterparcells.csi2310.lab1;
+package com.hunterparcells.csi2310.work.lab1;
 
 /**
  * Person object.
