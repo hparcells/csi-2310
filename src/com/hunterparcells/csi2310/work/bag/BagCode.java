@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class BagCode extends Runnable {
     public BagCode() {
-        this.setName("Bag");
+        this.setName("BagBagBagBagBagBagBagBagBag");
         this.setDate(LocalDate.of(2023, 1, 18));
     }
 

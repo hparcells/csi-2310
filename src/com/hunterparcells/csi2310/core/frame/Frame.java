@@ -24,24 +24,28 @@ public class Frame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.getContentPane().setBackground(Color.RED);
-        this.setLayout(new GridLayout(1, 2));
-        this.setBackground(Color.WHITE);
 
-        // Add lab selector.
+        ImageIcon icon = new ImageIcon("res/icon.png");
+        this.setIconImage(icon.getImage());
+
+        // Lab selector.
         JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         LabSelector labSelector = new LabSelector(this.labs);
+        labSelector.setMaximumSize(labSelector.getPreferredSize());
         leftPanel.add(labSelector);
-        this.add(leftPanel);
 
-        // Add output.
+        // Output.
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BorderLayout());
         rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         this.output = new FrameOutput();
         rightPanel.add(this.output, BorderLayout.CENTER);
-        this.add(rightPanel);
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, leftPanel, rightPanel);
+        // splitPane.setResizeWeight(1.0);
+        this.add(splitPane);
 
         // We're ready.
         this.getOutput().log("Ready.");
