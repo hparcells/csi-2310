@@ -10,6 +10,6 @@ public class FrameOutput extends JTextArea {
     }
 
     public void log(String string) {
-        this.append("\n" + string);
+        this.append(string + "\n");
     }
 }

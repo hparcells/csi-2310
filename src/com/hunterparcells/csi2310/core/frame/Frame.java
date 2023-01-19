@@ -19,24 +19,31 @@ public class Frame extends JFrame {
     // TODO: Make the frame better.
     public void initFrame() {
         // Init frame.
-        JPanel panel = new JPanel();
-
-        // Setup the frame.
         this.setTitle("CSI 2310");
         this.setSize(500, 300);
-        panel.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
+        this.getContentPane().setBackground(Color.RED);
+        this.setLayout(new GridLayout(1, 2));
+        this.setBackground(Color.WHITE);
 
         // Add lab selector.
+        JPanel leftPanel = new JPanel();
+        leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         LabSelector labSelector = new LabSelector(this.labs);
-        this.add(labSelector, BorderLayout.NORTH);
+        leftPanel.add(labSelector);
+        this.add(leftPanel);
 
         // Add output.
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BorderLayout());
+        rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         this.output = new FrameOutput();
-        this.add(this.output, BorderLayout.SOUTH);
+        rightPanel.add(this.output, BorderLayout.CENTER);
+        this.add(rightPanel);
 
+        // We're ready.
         this.getOutput().log("Ready.");
         this.setVisible(true);
     }
