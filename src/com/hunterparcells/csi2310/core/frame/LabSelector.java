@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LabSelector extends JComboBox<LabComboItem> implements ActionListener {
+    private Thread thread;
+
     public LabSelector(Runnable[] labs) {
         super();
 
@@ -26,8 +28,12 @@ public class LabSelector extends JComboBox<LabComboItem> implements ActionListen
             Logger.clear();
             Runnable lab = labItem.getValue();
 
-            Thread thread = new Thread(lab);
+            this.thread = new Thread(lab);
             thread.start();
         }
+    }
+
+    public Thread getThread() {
+        return this.thread;
     }
 }

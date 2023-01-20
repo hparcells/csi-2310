@@ -16,10 +16,10 @@ public class Frame extends JFrame {
         this.labs = labs;
     }
 
-    // TODO: Make the frame better.
+    // TODO: Put components in their own classes.
     public void initFrame() {
         // Init frame.
-        this.setTitle("CSI 2310");
+        this.setTitle("CSI 2310 Code Runner");
         this.setSize(500, 300);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,22 +29,29 @@ public class Frame extends JFrame {
         this.setIconImage(icon.getImage());
 
         // Lab selector.
-        JPanel leftPanel = new JPanel();
-        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout());
+        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         LabSelector labSelector = new LabSelector(this.labs);
         labSelector.setMaximumSize(labSelector.getPreferredSize());
-        leftPanel.add(labSelector);
+        topPanel.add(labSelector, BorderLayout.CENTER);
+        JButton stopButton = new JButton("STOP");
+        try {
+            stopButton.addActionListener(e -> labSelector.getThread().interrupt());
+        }catch(NullPointerException e) {
+            // Do nothing.
+        }
+        topPanel.add(stopButton, BorderLayout.EAST);
 
         // Output.
-        JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new BorderLayout());
-        rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BorderLayout());
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         this.output = new FrameOutput();
-        rightPanel.add(this.output, BorderLayout.CENTER);
+        bottomPanel.add(this.output, BorderLayout.CENTER);
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, leftPanel, rightPanel);
-        // splitPane.setResizeWeight(1.0);
+        @SuppressWarnings("SuspiciousNameCombination")
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomPanel);
         this.add(splitPane);
 
         // We're ready.

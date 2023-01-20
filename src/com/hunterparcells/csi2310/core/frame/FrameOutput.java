@@ -4,9 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
-public class FrameOutput extends JTextArea implements KeyListener {
+public class FrameOutput extends JTextArea implements KeyListener, MouseWheelListener {
     private int fontSize = 12;
+    private boolean hasControlPressed = false;
 
     public FrameOutput() {
         super("");
@@ -14,6 +17,7 @@ public class FrameOutput extends JTextArea implements KeyListener {
         this.setEditable(false);
         this.setFont(new Font("Monospaced", Font.PLAIN, this.fontSize));
         this.addKeyListener(this);
+        this.addMouseWheelListener(this);
     }
 
     public void log(String string) {
@@ -27,6 +31,11 @@ public class FrameOutput extends JTextArea implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_CONTROL) {
+            this.hasControlPressed = true;
+        }
+
+        // Zoom using control + +/-.
         if(e.getKeyCode() == KeyEvent.VK_EQUALS && (e.getModifiersEx() == KeyEvent.CTRL_DOWN_MASK)) {
             this.fontSize++;
         }
@@ -38,6 +47,23 @@ public class FrameOutput extends JTextArea implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // Do nothing.
+        if(e.getKeyCode() == KeyEvent.VK_CONTROL) {
+            this.hasControlPressed = false;
+        }
+    }
+
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        // Zoom if the control key is pressed.
+        if(this.hasControlPressed) {
+            int notches = e.getWheelRotation();
+            if(notches < 0) {
+                this.fontSize++;
+            }else {
+                this.fontSize--;
+            }
+            this.setFont(new Font("Monospaced", Font.PLAIN, this.fontSize));
+        }
     }
 }
