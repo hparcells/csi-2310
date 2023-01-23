@@ -29,7 +29,19 @@ public class LabSelector extends JComboBox<LabComboItem> implements ActionListen
             Runnable lab = labItem.getValue();
 
             this.thread = new Thread(lab);
+            long start = System.currentTimeMillis();
             thread.start();
+
+            try {
+                this.thread.join();
+                long end = System.currentTimeMillis();
+                Logger.log("\n");
+                Logger.log("------------------------");
+                Logger.log("Code execution compete.");
+                Logger.log("Time Elapsed: " + (end - start) + "ms");
+            }catch(InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -20,6 +20,7 @@ class Bag implements IBag {
             }
             bag.add(item);
         }catch(Exception e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
         }
     }

@@ -8,6 +8,7 @@ import java.awt.*;
 public class Frame extends JFrame {
     private final Runnable[] labs;
 
+    private JScrollPane scrollPane;
     private FrameOutput output;
 
     public Frame(Runnable[] labs) {
@@ -39,7 +40,8 @@ public class Frame extends JFrame {
         try {
             stopButton.addActionListener(e -> labSelector.getThread().interrupt());
         }catch(NullPointerException e) {
-            // Do nothing.
+            e.printStackTrace();
+            System.exit(1);
         }
         topPanel.add(stopButton, BorderLayout.EAST);
 
@@ -48,7 +50,9 @@ public class Frame extends JFrame {
         bottomPanel.setLayout(new BorderLayout());
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         this.output = new FrameOutput();
-        bottomPanel.add(this.output, BorderLayout.CENTER);
+        this.scrollPane = new JScrollPane(this.output);
+        // TODO: Mouse wheel scroll.
+        bottomPanel.add(scrollPane, BorderLayout.CENTER);
 
         @SuppressWarnings("SuspiciousNameCombination")
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, bottomPanel);
@@ -61,5 +65,9 @@ public class Frame extends JFrame {
 
     public FrameOutput getOutput() {
         return this.output;
+    }
+
+    public JScrollPane getScrollPane() {
+        return this.scrollPane;
     }
 }

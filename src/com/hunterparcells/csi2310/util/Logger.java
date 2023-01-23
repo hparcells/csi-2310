@@ -3,6 +3,8 @@ package com.hunterparcells.csi2310.util;
 import com.hunterparcells.csi2310.Main;
 import com.hunterparcells.csi2310.core.frame.Frame;
 
+import javax.swing.*;
+
 /**
  * Program logger.
  */
@@ -20,6 +22,10 @@ public final class Logger {
      */
     public static void log(String string) {
         frame.getOutput().log(string);
+
+        // FIXME: This doesn't work.
+        JScrollBar vertical = frame.getScrollPane().getVerticalScrollBar();
+        vertical.setValue(vertical.getMaximum());
     }
 
     /**

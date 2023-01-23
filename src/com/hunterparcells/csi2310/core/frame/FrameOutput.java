@@ -8,7 +8,9 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 public class FrameOutput extends JTextArea implements KeyListener, MouseWheelListener {
-    private int fontSize = 12;
+    private static final int DEFAULT_FONT_SIZE = 12;
+
+    private int fontSize = DEFAULT_FONT_SIZE;
     private boolean hasControlPressed = false;
 
     public FrameOutput() {
@@ -36,13 +38,18 @@ public class FrameOutput extends JTextArea implements KeyListener, MouseWheelLis
         }
 
         // Zoom using control + +/-.
-        if(e.getKeyCode() == KeyEvent.VK_EQUALS && (e.getModifiersEx() == KeyEvent.CTRL_DOWN_MASK)) {
-            this.fontSize++;
+        if(this.hasControlPressed) {
+            if(e.getKeyCode() == KeyEvent.VK_EQUALS) {
+                this.fontSize++;
+            }
+            if(e.getKeyCode() == KeyEvent.VK_MINUS) {
+                this.fontSize--;
+            }
+            if(e.getKeyCode() == KeyEvent.VK_0) {
+                this.fontSize = DEFAULT_FONT_SIZE;
+            }
+            this.setFont(new Font("Monospaced", Font.PLAIN, this.fontSize));
         }
-        if(e.getKeyCode() == KeyEvent.VK_MINUS && (e.getModifiersEx() == KeyEvent.CTRL_DOWN_MASK)) {
-            this.fontSize--;
-        }
-        this.setFont(new Font("Monospaced", Font.PLAIN, this.fontSize));
     }
 
     @Override
