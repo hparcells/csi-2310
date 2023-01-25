@@ -12,7 +12,7 @@ public class LinkedListCode extends Runnable {
     }
 
     public void run() {
-        LinkedList linkedList = new LinkedList();
+        IntLinkedList linkedList = new IntLinkedList();
 
         Logger.log("Adding \"2\" to the end.");
         linkedList.addToEnd(2);
@@ -36,6 +36,11 @@ public class LinkedListCode extends Runnable {
 
         Logger.log("Removing the third node.");
         linkedList.removeNth(3);
+        Logger.log(linkedList.toString());
+        Logger.log("\n");
+
+        Logger.log("Inserting \"5\" at the second position.");
+        linkedList.insert(5, 1);
         Logger.log(linkedList.toString());
         Logger.log("\n");
     }
