@@ -1,44 +1,44 @@
-package com.hunterparcells.csi2310.work.linkedlist;
+package com.hunterparcells.csi2310.work.linkedlist.doublelinkedlist;
 
-public class LinkedList {
-    private Node head;
-    private Node tail;
+public class DoubleLinkedList {
+    private DoubleLinkedListNode head;
+    private DoubleLinkedListNode tail;
 
-    public LinkedList() {
+    public DoubleLinkedList() {
         this.head = null;
         this.tail = null;
     }
 
     public void addToStart(int value) {
-        Node newNode;
+        DoubleLinkedListNode newNode;
 
         if(this.head == null) {
-            newNode = new Node(value, null, null);
+            newNode = new DoubleLinkedListNode(value, null, null);
 
             this.tail = newNode;
         }else {
-            newNode = new Node(value, this.head, null);
+            newNode = new DoubleLinkedListNode(value, this.head, null);
             this.head.setPrevious(newNode);
         }
         this.head = newNode;
     }
 
     public void addToEnd(int value) {
-        Node newNode;
+        DoubleLinkedListNode newNode;
 
         if(this.head == null) {
-            newNode = new Node(value, null, null);
+            newNode = new DoubleLinkedListNode(value, null, null);
 
             this.head = newNode;
         }else {
-            newNode = new Node(value, null, this.tail);
+            newNode = new DoubleLinkedListNode(value, null, this.tail);
             this.tail.setNext(newNode);
         }
         this.tail = newNode;
     }
 
-    public Node getNth(int n) {
-        Node currentNode = this.head;
+    public DoubleLinkedListNode getNth(int n) {
+        DoubleLinkedListNode currentNode = this.head;
         int counter = 0;
 
         while(currentNode != null) {
@@ -58,7 +58,7 @@ public class LinkedList {
     public String toString() {
         StringBuilder output = new StringBuilder();
 
-        Node currentNode = this.head;
+        DoubleLinkedListNode currentNode = this.head;
         while(currentNode != null) {
             output.append(currentNode.getValue()).append(" ");
             currentNode = currentNode.getNext();
@@ -67,19 +67,19 @@ public class LinkedList {
         return output.toString();
     }
 
-    public Node getHead() {
+    public DoubleLinkedListNode getHead() {
         return head;
     }
 
-    public void setHead(Node head) {
+    public void setHead(DoubleLinkedListNode head) {
         this.head = head;
     }
 
-    public Node getTail() {
+    public DoubleLinkedListNode getTail() {
         return tail;
     }
 
-    public void setTail(Node tail) {
+    public void setTail(DoubleLinkedListNode tail) {
         this.tail = tail;
     }
 }

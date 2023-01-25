@@ -1,11 +1,11 @@
-package com.hunterparcells.csi2310.work.linkedlist;
+package com.hunterparcells.csi2310.work.linkedlist.doublelinkedlist;
 
-public class Node {
+public class DoubleLinkedListNode {
     private int value;
-    private Node next;
-    private Node previous;
+    private DoubleLinkedListNode next;
+    private DoubleLinkedListNode previous;
 
-    public Node(int value, Node next, Node previous) {
+    public DoubleLinkedListNode(int value, DoubleLinkedListNode next, DoubleLinkedListNode previous) {
         this.value = value;
         this.next = next;
         this.previous = previous;
@@ -32,19 +32,19 @@ public class Node {
         this.value = value;
     }
 
-    public Node getNext() {
+    public DoubleLinkedListNode getNext() {
         return this.next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(DoubleLinkedListNode next) {
         this.next = next;
     }
 
-    public Node getPrevious() {
+    public DoubleLinkedListNode getPrevious() {
         return this.previous;
     }
 
-    public void setPrevious(Node previous) {
+    public void setPrevious(DoubleLinkedListNode previous) {
         this.previous = previous;
     }
 }

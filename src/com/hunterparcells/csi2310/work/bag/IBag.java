@@ -41,11 +41,27 @@ public interface IBag {
     int length();
 
     /**
+     * Counts the occurrences of an item in the bag.
+     *
+     * @param search The item to search for.
+     *
+     * @return The number of occurrences of the item in the bag.
+     */
+    int count(Object search);
+
+    /**
      * Checks if the bag is empty.
      *
      * @return Whether the bag is empty.
      */
     boolean isEmpty();
+
+    /**
+     * Checks if the bag is full.
+     *
+     * @return Whether the bag is full.
+     */
+    boolean isFull();
 
     /**
      * Empties the bag.
