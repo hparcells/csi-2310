@@ -37,7 +37,7 @@ public class LabSelector extends JComboBox<LabComboItem> implements ActionListen
                 long end = System.currentTimeMillis();
                 Logger.log("\n");
                 Logger.log("------------------------");
-                Logger.log("Code execution compete.");
+                Logger.log("Code execution complete.");
                 Logger.log("Time Elapsed: " + (end - start) + "ms");
             }catch(InterruptedException e) {
                 e.printStackTrace();
