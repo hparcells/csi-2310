@@ -13,6 +13,7 @@ class Bag implements IBag {
         this.bag = new ArrayList<>();
     }
 
+    @Override
     public void add(Object item) {
         try {
             if(this.length() == this.size) {
@@ -25,22 +26,43 @@ class Bag implements IBag {
         }
     }
 
+    @Override
     public void remove(Object item) {
         bag.remove(item);
     }
 
+    @Override
     public boolean contains(Object item) {
         return bag.contains(item);
     }
 
+    @Override
     public int length() {
         return bag.size();
     }
 
+    @Override
+    public int count(Object search) {
+        int count = 0;
+        for(Object item : bag) {
+            if(item.equals(search)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
     public boolean isEmpty() {
         return this.length() == 0;
     }
 
+    @Override
+    public boolean isFull() {
+        return this.length() == this.size;
+    }
+
+    @Override
     public void clear() {
         this.bag = new ArrayList<>();
     }

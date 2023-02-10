@@ -1,6 +1,7 @@
 package com.hunterparcells.csi2310.work.linkedlist;
 
 import com.hunterparcells.csi2310.core.Runnable;
+import com.hunterparcells.csi2310.work.linkedlist.doublelinkedlist.IntDoubleLinkedList;
 
 import java.time.LocalDate;
 

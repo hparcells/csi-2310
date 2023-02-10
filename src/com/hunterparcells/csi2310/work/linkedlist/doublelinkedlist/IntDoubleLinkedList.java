@@ -1,4 +1,4 @@
-package com.hunterparcells.csi2310.work.linkedlist;
+package com.hunterparcells.csi2310.work.linkedlist.doublelinkedlist;
 
 import com.hunterparcells.csi2310.util.Logger;
 
@@ -8,8 +8,8 @@ import com.hunterparcells.csi2310.util.Logger;
 public class IntDoubleLinkedList {
     private static final boolean DEBUG_MODE = true;
 
-    private IntNode head;
-    private IntNode tail;
+    private DoubleLinkedListNode head;
+    private DoubleLinkedListNode tail;
 
     public IntDoubleLinkedList() {
         this.head = null;
@@ -22,13 +22,13 @@ public class IntDoubleLinkedList {
      * @param value The value to add.
      */
     public void unshift(int value) {
-        IntNode newNode;
+        DoubleLinkedListNode newNode;
         if(this.head == null) {
-            newNode = new IntNode(value, null, null);
+            newNode = new DoubleLinkedListNode(value, null, null);
 
             this.tail = newNode;
         }else {
-            newNode = new IntNode(value, this.head, null);
+            newNode = new DoubleLinkedListNode(value, this.head, null);
             this.head.setPrevious(newNode);
         }
         this.head = newNode;
@@ -53,14 +53,14 @@ public class IntDoubleLinkedList {
      * @param value The value to add.
      */
     public void push(int value) {
-        IntNode newNode;
+        DoubleLinkedListNode newNode;
 
         if(this.head == null) {
-            newNode = new IntNode(value, null, null);
+            newNode = new DoubleLinkedListNode(value, null, null);
 
             this.head = newNode;
         }else {
-            newNode = new IntNode(value, null, this.tail);
+            newNode = new DoubleLinkedListNode(value, null, this.tail);
             this.tail.setNext(newNode);
         }
         this.tail = newNode;
@@ -86,8 +86,8 @@ public class IntDoubleLinkedList {
      *
      * @return The value of the nth node.
      */
-    public IntNode getNth(int n) {
-        IntNode currentNode = this.head;
+    public DoubleLinkedListNode getNth(int n) {
+        DoubleLinkedListNode currentNode = this.head;
         int counter = 0;
         while(currentNode != null) {
             if(counter == (n - 1)) {
@@ -106,8 +106,8 @@ public class IntDoubleLinkedList {
      *
      * @return The value of the node at the index.
      */
-    public IntNode getIndex(int index) {
-        IntNode currentNode = this.head;
+    public DoubleLinkedListNode getIndex(int index) {
+        DoubleLinkedListNode currentNode = this.head;
         int counter = 0;
         while(currentNode != null) {
             if(counter == index) {
@@ -153,7 +153,7 @@ public class IntDoubleLinkedList {
      * @return The size of the list in node count.
      */
     public int size() {
-        IntNode currentNode = this.head;
+        DoubleLinkedListNode currentNode = this.head;
         int counter = 0;
         while(currentNode != null) {
             currentNode = currentNode.getNext();
@@ -178,7 +178,7 @@ public class IntDoubleLinkedList {
             return;
         }
 
-        IntNode newNode = new IntNode(value, this.getIndex(index), this.getIndex(index - 1));
+        DoubleLinkedListNode newNode = new DoubleLinkedListNode(value, this.getIndex(index), this.getIndex(index - 1));
         this.getIndex(index - 1).setNext(newNode);
         // Okay, the list shifted, so we need to +1;
         this.getIndex(index + 1).setPrevious(newNode);
@@ -208,8 +208,8 @@ public class IntDoubleLinkedList {
      * Reverses the list.
      */
     public void reverse() {
-        IntNode currentNode = this.head;
-        IntNode tempNode;
+        DoubleLinkedListNode currentNode = this.head;
+        DoubleLinkedListNode tempNode;
 
         // Reverse all the nodes directions.
         while(currentNode != null) {
@@ -230,8 +230,8 @@ public class IntDoubleLinkedList {
         }
     }
 
-    public IntNode search(int value) {
-        IntNode currentNode = this.head;
+    public DoubleLinkedListNode search(int value) {
+        DoubleLinkedListNode currentNode = this.head;
 
         while(currentNode != null && currentNode.getValue() == value) {
             currentNode = currentNode.getNext();
@@ -246,7 +246,7 @@ public class IntDoubleLinkedList {
      */
     public String toString() {
         StringBuilder output = new StringBuilder();
-        IntNode currentNode = this.head;
+        DoubleLinkedListNode currentNode = this.head;
         while(currentNode != null) {
             output.append(currentNode.getValue()).append(" ");
             currentNode = currentNode.getNext();
@@ -259,7 +259,7 @@ public class IntDoubleLinkedList {
      *
      * @return The value of the node.
      */
-    public IntNode getHead() {
+    public DoubleLinkedListNode getHead() {
         return this.head;
     }
 
@@ -268,7 +268,7 @@ public class IntDoubleLinkedList {
      *
      * @param head The new value of the node.
      */
-    public void setHead(IntNode head) {
+    public void setHead(DoubleLinkedListNode head) {
         this.head = head;
     }
 
@@ -277,7 +277,7 @@ public class IntDoubleLinkedList {
      *
      * @return The value of the node.
      */
-    public IntNode getTail() {
+    public DoubleLinkedListNode getTail() {
         return this.tail;
     }
 
@@ -286,7 +286,7 @@ public class IntDoubleLinkedList {
      *
      * @param tail The new value of the node.
      */
-    public void setTail(IntNode tail) {
+    public void setTail(DoubleLinkedListNode tail) {
         this.tail = tail;
     }
 }
