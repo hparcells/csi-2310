@@ -11,12 +11,12 @@ public class LinkedListCode extends Runnable {
     }
 
     public void run() {
-        IntLinkedList linkedList = new IntLinkedList();
+        IntDoubleLinkedList linkedList = new IntDoubleLinkedList();
 
-        linkedList.addToEnd(2);
-        linkedList.addToEnd(3);
-        linkedList.addToEnd(4);
-        linkedList.addToStart(1);
+        linkedList.push(2);
+        linkedList.push(3);
+        linkedList.push(4);
+        linkedList.unshift(1);
         linkedList.removeNth(3);
         linkedList.insertAtIndex(5, 1);
         linkedList.reverse();

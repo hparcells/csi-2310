@@ -5,13 +5,13 @@ import com.hunterparcells.csi2310.util.Logger;
 /**
  * A linked list data structure.
  */
-public class IntLinkedList {
+public class IntDoubleLinkedList {
     private static final boolean DEBUG_MODE = true;
 
     private IntNode head;
     private IntNode tail;
 
-    public IntLinkedList() {
+    public IntDoubleLinkedList() {
         this.head = null;
         this.tail = null;
     }
@@ -21,7 +21,7 @@ public class IntLinkedList {
      *
      * @param value The value to add.
      */
-    public void addToStart(int value) {
+    public void unshift(int value) {
         IntNode newNode;
         if(this.head == null) {
             newNode = new IntNode(value, null, null);
@@ -40,11 +40,19 @@ public class IntLinkedList {
     }
 
     /**
+     * Removes the first node from the list.
+     */
+    public void shift() {
+        this.head = this.head.getNext();
+        this.head.setPrevious(null);
+    }
+
+    /**
      * Adds a value to the end of the list.
      *
      * @param value The value to add.
      */
-    public void addToEnd(int value) {
+    public void push(int value) {
         IntNode newNode;
 
         if(this.head == null) {
@@ -61,6 +69,14 @@ public class IntLinkedList {
             Logger.log("Adding " + value + " to the end of the list.");
             Logger.log(this + "\n\n");
         }
+    }
+
+    /**
+     * Removes the last node from the list.
+     */
+    public void pop() {
+        this.tail = this.tail.getPrevious();
+        this.tail.setNext(null);
     }
 
     /**
@@ -154,11 +170,11 @@ public class IntLinkedList {
      */
     public void insertAtIndex(int value, int index) {
         if(index == 0) {
-            this.addToStart(value);
+            this.unshift(value);
             return;
         }
         if(index == this.size()) {
-            this.addToEnd(value);
+            this.push(value);
             return;
         }
 
@@ -212,6 +228,15 @@ public class IntLinkedList {
             Logger.log("Reversing the list.");
             Logger.log(this + "\n\n");
         }
+    }
+
+    public IntNode search(int value) {
+        IntNode currentNode = this.head;
+
+        while(currentNode != null && currentNode.getValue() == value) {
+            currentNode = currentNode.getNext();
+        }
+        return currentNode;
     }
 
     /**
