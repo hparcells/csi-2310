@@ -5,6 +5,7 @@ import com.hunterparcells.csi2310.core.frame.Frame;
 import com.hunterparcells.csi2310.work.bag.BagCode;
 import com.hunterparcells.csi2310.work.lab1.Lab1;
 import com.hunterparcells.csi2310.work.linkedlist.LinkedListCode;
+import com.hunterparcells.csi2310.work.stack.StackCode;
 
 public class Main {
     private static Frame frame;
@@ -12,7 +13,8 @@ public class Main {
     private static final Runnable[] labs = {
             new Lab1(),
             new BagCode(),
-            new LinkedListCode()
+            new LinkedListCode(),
+            new StackCode()
     };
 
     public static void main(String[] args) {

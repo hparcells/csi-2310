@@ -20,8 +20,8 @@ public final class Logger {
      *
      * @param string The string to long.
      */
-    public static void log(String string) {
-        frame.getOutput().log(string);
+    public static void log(Object string) {
+        frame.getOutput().log(string.toString());
 
         // FIXME: This doesn't work.
         JScrollBar vertical = frame.getScrollPane().getVerticalScrollBar();
