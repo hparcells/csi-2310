@@ -29,6 +29,20 @@ public final class Logger {
     }
 
     /**
+     * Logs to the in-frame display.
+     *
+     * @param string  The string to long.
+     * @param newLine Whether to log on a new line.
+     */
+    public static void log(Object string, boolean newLine) {
+        frame.getOutput().log(string.toString(), newLine);
+
+        // FIXME: This doesn't work.
+        JScrollBar vertical = frame.getScrollPane().getVerticalScrollBar();
+        vertical.setValue(vertical.getMaximum());
+    }
+
+    /**
      * Clears the in-frame display.
      */
     public static void clear() {

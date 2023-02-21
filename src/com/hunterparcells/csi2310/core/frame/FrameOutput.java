@@ -26,6 +26,14 @@ public class FrameOutput extends JTextArea implements KeyListener, MouseWheelLis
         this.append(string + "\n");
     }
 
+    public void log(String string, boolean newLine) {
+        if(newLine) {
+            this.append(string + "\n");
+            return;
+        }
+        this.append(string);
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
         // Do nothing.
