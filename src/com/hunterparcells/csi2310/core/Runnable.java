@@ -28,4 +28,6 @@ public abstract class Runnable implements java.lang.Runnable, IRunnable {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public abstract void run();
 }
