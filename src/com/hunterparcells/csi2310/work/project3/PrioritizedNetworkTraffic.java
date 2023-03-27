@@ -14,7 +14,11 @@ public class PrioritizedNetworkTraffic {
     //                All values of Q are initialized to -1.
     //                length is set to "queueSize".
     public PrioritizedNetworkTraffic(int queueSize) {
-        // Implement me.
+        this.length = queueSize;
+        this.Q = new int[this.length];
+        for(int i = 0; i < this.length; i++) {
+            this.Q[i] = -1;
+        }
     }
 
 
@@ -26,7 +30,14 @@ public class PrioritizedNetworkTraffic {
     //                "tail" is set to the next index of Q that is available for storage of a new element.
     //                If Q is full, "tail" is to the index of Q where the packet with the lowest priority is stored.
     public void Enqueue(int newElement) {
-        // Implement me.
+        // Set the new element.
+        this.Q[this.tail] = newElement;
+
+        // Find the new head.
+        this.head = this.LocateNextHead(0, this.length);
+
+        // Find the new tail.
+        this.tail = this.LocateNextTail(0, this.length);
     }
 
 
@@ -41,7 +52,12 @@ public class PrioritizedNetworkTraffic {
     //                If Q is empty, "head" is set to -1 and "tail" is set to 0. 
 
     public int Dequeue() {
-        // Implement me.
+        int removedElement = this.Q[this.head];
+        this.Q[this.head] = -1;
+        this.head = this.LocateNextHead(0, this.length);
+        this.tail = this.LocateNextTail(0, this.length);
+
+        return removedElement;
     }
 
     // Precondition: Priority queue Q is existent.
@@ -49,7 +65,13 @@ public class PrioritizedNetworkTraffic {
     //               "startIndex" and "endIndex" may refer to the entire Q.
     // Postcondition: The index of Q, where the packet with the highest priority is stored, is found and is returned to the caller.
     public int LocateNextHead(int startIndex, int endIndex) {
-        // Implement me.
+        int highestIndex = 0;
+        for(int i = startIndex; i < endIndex; i++) {
+            if(this.Q[i] > this.Q[highestIndex]) {
+                highestIndex = i;
+            }
+        }
+        return highestIndex;
     }
 
 
@@ -58,15 +80,23 @@ public class PrioritizedNetworkTraffic {
     //               "startIndex" and "endIndex" may refer to the entire Q.
     // Postcondition: The index of Q, where the packet with the lowest priority is stored, is found and is returned to the caller.
     public int LocateNextTail(int startIndex, int endIndex) {
-        // Implement me.
+        int lowestIndex = 0;
+        for(int i = startIndex; i < endIndex; i++) {
+            if(this.Q[i] < this.Q[lowestIndex]) {
+                lowestIndex = i;
+            }
+        }
+        return lowestIndex;
     }
 
 
     // Precondition: Priority queue Q is existent.
     // Postcondition: The index and priority of each packet in Q are displayed on the monitor.
     public void DisplayPriorityQueue() {
-        // Implement me.
+        System.out.print("Queue: ");
+        for(int i = 0; i < this.length; i++) {
+            System.out.print(this.Q[i] + " ");
+        }
+        System.out.println();
     }
-
 }
-
