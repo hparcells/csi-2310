@@ -53,6 +53,56 @@ public class TreeNode {
     }
 
     /**
+     * Find the node whose key is the minimum.
+     *
+     * @param node The node to start from.
+     *
+     * @return The left-most node.
+     */
+    public TreeNode treeMinimum(TreeNode node) {
+        while(node.leftChild != null) {
+            node = node.leftChild;
+        }
+        return node;
+    }
+
+    public TreeNode transplant(TreeNode node, TreeNode replaced, TreeNode branch) {
+        if(replaced.parent == null) {
+            node = branch;
+        }else if(replaced == replaced.parent.leftChild) {
+            replaced.parent.leftChild = branch;
+        }else {
+            replaced.parent.rightChild = branch;
+        }
+        if(branch != null) {
+            branch.parent = replaced.parent;
+        }
+
+        return node;
+    }
+
+    public TreeNode treeDelete(TreeNode root, TreeNode z) {
+        TreeNode revisedTree, y = null;
+
+        if(z.leftChild == null) {
+            revisedTree = transplant(root, z, z.rightChild);
+        }else if(z.rightChild == null) {
+            revisedTree = transplant(root, z, z.leftChild);
+        }else {
+            y = treeMinimum(z.rightChild);
+            if(y.parent != z) {
+                revisedTree = transplant(root, y, y.rightChild);
+                y.rightChild = z.rightChild;
+                y.rightChild.parent = y;
+            }
+            revisedTree = transplant(root, z, y);
+            y.leftChild = z.leftChild;
+            y.leftChild.parent = y;
+        }
+        return root;
+    }
+
+    /**
      * Produces a flattened string of the tree from the called node.
      *
      * @return A string representation of the tree from the called node.
