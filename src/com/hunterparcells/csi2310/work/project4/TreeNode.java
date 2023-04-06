@@ -18,7 +18,10 @@ public class TreeNode {
     //                and its instance variables are initialized.
     //
     public TreeNode(String computerNameValue, TreeNode parentValue, TreeNode leftChildValue, TreeNode rightChildValue) {
-        // Implement me.
+        this.computerName = computerNameValue;
+        this.parent = parentValue;
+        this.leftChild = leftChildValue;
+        this.rightChild = rightChildValue;
     }
 
 
@@ -27,8 +30,21 @@ public class TreeNode {
     //                The revised tree satisfies the binary search tree property.
     //
     public void insertNewNode(TreeNode currentNode, TreeNode newNode) {
-        // Implement me.
-
+        if(newNode.computerName.compareTo(currentNode.computerName) < 0) {
+            if(currentNode.leftChild == null) {
+                currentNode.leftChild = newNode;
+                newNode.parent = currentNode;
+            }else {
+                this.insertNewNode(currentNode.leftChild, newNode);
+            }
+        }else {
+            if(currentNode.rightChild == null) {
+                currentNode.rightChild = newNode;
+                newNode.parent = currentNode;
+            }else {
+                this.insertNewNode(currentNode.rightChild, newNode);
+            }
+        }
     }
 
 
@@ -37,7 +53,17 @@ public class TreeNode {
     //                The walk starts at currentNode.
     //
     public TreeNode analyzeInOrder(TreeNode currentNode) {
-        // Implement me.
+        if(currentNode.leftChild != null) {
+            this.analyzeInOrder(currentNode.leftChild);
+        }
+
+        System.out.println(currentNode.computerName);
+
+        if(currentNode.rightChild != null) {
+            this.analyzeInOrder(currentNode.rightChild);
+        }
+
+        return currentNode;
     }
 
 
@@ -46,7 +72,17 @@ public class TreeNode {
     //                The walk starts at currentNode.
     //
     public TreeNode analyzeInPreOrder(TreeNode currentNode) {
-        // Implement me.
+        System.out.println(currentNode.computerName);
+
+        if(currentNode.leftChild != null) {
+            this.analyzeInPreOrder(currentNode.leftChild);
+        }
+
+        if(currentNode.rightChild != null) {
+            this.analyzeInPreOrder(currentNode.rightChild);
+        }
+
+        return currentNode;
     }
 
 
@@ -55,6 +91,16 @@ public class TreeNode {
     //                The walk starts at currentNode.
     //
     public TreeNode analyzeInPostOrder(TreeNode currentNode) {
-        // Implement me.
+        if(currentNode.leftChild != null) {
+            this.analyzeInPostOrder(currentNode.leftChild);
+        }
+
+        if(currentNode.rightChild != null) {
+            this.analyzeInPostOrder(currentNode.rightChild);
+        }
+
+        System.out.println(currentNode.computerName);
+
+        return currentNode;
     }
 }

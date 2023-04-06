@@ -32,10 +32,21 @@ public class WorkerClass {
 
         root.insertNewNode(root, industrialEngineeringComputer);
 
+        System.out.println("Walking the binary tree in order.");
+        System.out.println("--------------------------------");
         root.analyzeInOrder(root);
+        System.out.println("--------------------------------");
+        System.out.println();
 
+        System.out.println("Walking the binary tree in pre-order.");
+        System.out.println("------------------------------------");
         root.analyzeInPreOrder(root);
+        System.out.println("--------------------------------");
+        System.out.println();
 
+        System.out.println("Walking the binary tree in post-order.");
+        System.out.println("-------------------------------------");
         root.analyzeInPostOrder(root);
+        System.out.println("--------------------------------");
     }
 }
