@@ -30,6 +30,7 @@ public class PersonHashTable {
 
     public PersonRecord searchRecord(long searchKey) {
         // do later
+        return null;
     }
 
     public void deleteRecord(long searchKey) {
