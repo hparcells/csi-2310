@@ -45,14 +45,31 @@ public class HT {
         return this.hashTable[index];
     }
 
+    // In case the above implementation was wrong.
+    public Packet searchByPacket(Packet packet) {
+        System.out.println();
+        System.out.println("Looking for packet " + packet.getSequenceNumber());
+
+        for(Packet hashTablePacket : this.hashTable) {
+            if(hashTablePacket == null) {
+                continue;
+            }
+            if(hashTablePacket.getSequenceNumber() == packet.getSequenceNumber()) {
+                System.out.println("Packet " + packet.getSequenceNumber() + " found");
+                return hashTablePacket;
+            }
+        }
+        return null;
+    }
+
     public String toString() {
         StringBuilder output = new StringBuilder();
         for(int i = 0; i < this.size; i++) {
             if(this.hashTable[i] != null) {
-                output.append(this.hashTable[i] + " ");
+                output.append(this.hashTable[i] + "  ");
                 continue;
             }
-            output.append("x ");
+            output.append("x  ");
         }
         return output.toString();
     }
